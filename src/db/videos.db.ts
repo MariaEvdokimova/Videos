@@ -8,8 +8,8 @@ export const db = {
       author: "author1",
       canBeDownloaded: true,
       minAgeRestriction: null,
-      createdAt: new Date("2025-03-25T20:08:59.130Z"),
-      publicationDate: new Date("2025-03-26T20:08:59.130Z"),
+      createdAt: "2025-03-25T20:08:59.130Z",
+      publicationDate: "2025-03-26T20:08:59.130Z",
       availableResolutions: [
         "P144"
       ]
@@ -20,8 +20,8 @@ export const db = {
       author: "author2",
       canBeDownloaded: true,
       minAgeRestriction: 18,
-      createdAt: new Date("2025-03-26T20:08:59.130Z"),
-      publicationDate: new Date("2025-03-276T20:08:59.130Z"),
+      createdAt: "2025-03-26T20:08:59.130Z",
+      publicationDate: "2025-03-276T20:08:59.130Z",
       availableResolutions: [
         "P2160"
       ]
