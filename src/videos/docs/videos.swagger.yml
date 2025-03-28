@@ -144,7 +144,7 @@ components:
     APIErrorResult:
       type: object
       properties:
-        errorMessages:
+        errorsMessages:
           type: array
           nullable: true
           items:
