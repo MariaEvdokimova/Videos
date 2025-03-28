@@ -64,7 +64,7 @@ export const videoUpdateDtoValidation = (
 
   if ( 
     data.minAgeRestriction && (
-      typeof data.title !== 'number' ||
+      typeof data.minAgeRestriction !== 'number' ||
       data.minAgeRestriction < 1 ||
       data.minAgeRestriction > 18 
     )

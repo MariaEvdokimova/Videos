@@ -23,6 +23,7 @@ videosRouter.get("",(_, res: Response) => {
   }
 
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + 1);
 
   const newVideo: Video = {
     id: db.videos.length ? db.videos[db.videos.length - 1].id + 1 : 0,
@@ -30,8 +31,8 @@ videosRouter.get("",(_, res: Response) => {
     author: req.body.author,
     canBeDownloaded: false,
     minAgeRestriction: null,
-    createdAt: currentDate.toISOString(),
-    publicationDate: new Date(currentDate.getDate() + 1).toISOString(),
+    createdAt: new Date().toISOString(),
+    publicationDate: currentDate.toISOString(),
     availableResolutions: req.body.availableResolutions
   };
 
@@ -44,7 +45,7 @@ videosRouter.get("",(_, res: Response) => {
   const video = db.videos.find(( video ) => video.id === id);
   
   if ( !video ) {
-    res.status(HttpStatus.NotFound);
+    res.status(HttpStatus.NotFound).send();
     return;
   }
 
@@ -63,7 +64,7 @@ videosRouter.get("",(_, res: Response) => {
   const index = db.videos.findIndex(( video ) => video.id === id);
   
   if ( index === -1 ) {
-    res.status(HttpStatus.NotFound);
+    res.status(HttpStatus.NotFound).send();
     return;
   }
 
@@ -71,12 +72,12 @@ videosRouter.get("",(_, res: Response) => {
 
   video.title = req.body.title;
   video.author = req.body.author;
-  video.availableResolutions.push(...req.body.availableResolutions);
+  video.availableResolutions = req.body.availableResolutions;
   video.canBeDownloaded = req.body.canBeDownloaded;
   video.minAgeRestriction = req.body.minAgeRestriction;
   video.publicationDate = req.body.publicationDate;
    
-  res.status(HttpStatus.NoContent);
+  res.status(HttpStatus.NoContent).send();
 })
 
 .delete("/:id", (req: Request, res: Response) => {
@@ -84,10 +85,10 @@ videosRouter.get("",(_, res: Response) => {
   const index = db.videos.findIndex( video => video.id === id );
 
   if ( index === -1 ) {
-    res.status(HttpStatus.NotFound);
+    res.status(HttpStatus.NotFound).send();
     return;
   }
 
   db.videos.splice( index, 1);  
-  res.status(HttpStatus.NoContent);
+  res.status(HttpStatus.NoContent).send();
 })
